@@ -1,0 +1,2 @@
+require("sekthor.remap")
+
