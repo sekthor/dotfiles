@@ -12,6 +12,14 @@ return require('packer').startup(function(use)
 
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 
+  use({
+	  'sainnhe/gruvbox-material',
+	  as = 'gruvbox-material',
+	  config = function()
+		  vim.cmd('colorscheme gruvbox-material')
+	  end
+  })
+
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
