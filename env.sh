@@ -1,0 +1,2 @@
+EDITOR=nvim
+KUBE_EDITOR=nvim
