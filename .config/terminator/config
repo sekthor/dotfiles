@@ -1,0 +1,20 @@
+[global_config]
+[keybindings]
+[profiles]
+  [[default]]
+    background_type = solid
+    #background_type = transparent
+    #background_darkness = 1
+    scrollbar_position = disabled
+    show_titlebar = false
+    background_color = "#32302F"
+    palette = "#282828:#CC241D:#98971A:#D79921:#458588:#458588:#689D6A:#A89984:#928374:#F66151:#33DA7A:#E9AD0C:#2A7BDE:#C061CB:#33C7DE:#FFFFFF"
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+[plugins]
