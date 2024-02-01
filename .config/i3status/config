@@ -3,6 +3,7 @@ general {
         interval = 5
 }
 
+order += "volume master"
 order += "battery 0"
 order += "tztime local"
 
@@ -19,3 +20,10 @@ battery 0 {
 tztime local {
         format = " %d.%m.%y %H:%M"
 }
+
+volume master {
+        format = "♪: %volume"
+        format_muted = "♪: muted"
+        device = "pulse"
+}
+
