@@ -6,7 +6,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-   'nvim-telescope/telescope.nvim', tag = '0.1.1',
+   'nvim-telescope/telescope.nvim', tag = '0.1.5',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
@@ -40,6 +40,14 @@ return require('packer').startup(function(use)
       {'L3MON4D3/LuaSnip'},     -- Required
     }
   }
+
+  use {
+    'rcarriga/nvim-dap-ui', requires = {"mfussenegger/nvim-dap"},
+  }
+
+  use 'theHamsta/nvim-dap-virtual-text'
+  use 'leoluz/nvim-dap-go'
+  use 'mortepau/codicons.nvim'
 
 end)
 
