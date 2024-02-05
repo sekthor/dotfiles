@@ -8,8 +8,8 @@ BINARYDIR=/usr/local/bin
 SRCDIR=${HOME}/code/tools
 
 # version of tools
-KUBERNETESVERSION=v1.26.10
-HELMVERSION=v3.14.0
+KUBERNETES_VERSION=v1.26.10
+HELM_VERSION=v3.14.0
 KUSTOMIZE_VERSION=v5.3.0
 GO_VERSION=1.20.13
 
@@ -78,7 +78,7 @@ kubernetes-config: bash-config
 	grep -qxF 'source ${CONFIGDIR}/bash/kubernetes.sh' ${HOME}/.bashrc || echo 'source ${CONFIGDIR}/bash/kubernetes.sh' >> ${HOME}/.bashrc
 
 kubectl-install:
-	curl -LO https://dl.k8s.io/release/${KUBERNETESVERSION}/bin/linux/amd64/kubectl
+	curl -LO https://dl.k8s.io/release/${KUBERNETES_VERSION}/bin/linux/amd64/kubectl
 	sudo chmod +x kubectl
 	sudo mv kubectl ${BINARYDIR}
 	mkdir -p ${HOME}/.kube
@@ -98,7 +98,7 @@ kustomize-install:
 	rm kustomize.tar.gz
 
 helm-install:
-	curl -L -o helm.tar.gz https://get.helm.sh/helm-${HELMVERSION}-linux-amd64.tar.gz
+	curl -L -o helm.tar.gz https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz
 	tar -zxvf helm.tar.gz
 	sudo mv linux-amd64/helm ${BINARYDIR}/helm
 	rm -r linux-amd64 helm.tar.gz
