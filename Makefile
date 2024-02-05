@@ -11,6 +11,7 @@ SRCDIR=${HOME}/code/tools
 KUBERNETESVERSION=v1.26.10
 HELMVERSION=v3.14.0
 KUSTOMIZE_VERSION=v5.3.0
+GO_VERSION=1.20.13
 
 all: essentials nvim
 
@@ -105,9 +106,20 @@ helm-install:
 # Golang
 ###############
 
-#go-install:
-	
+go-all: go-install go-config go-tools-install
 
+go-install:
+	@echo "installing golang ${GO_VERSION}"
+	curl -L -o go.tar.gz https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
+	sudo tar -C /usr/local -xzf go.tar.gz
+	rm go.tar.gz
+
+go-config:
+	grep -qxF 'source ${CONFIGDIR}/bash/go.sh' ${HOME}/.bashrc || echo 'source ${CONFIGDIR}/bash/go.sh' >> ${HOME}/.bashrc
+
+# can only be installed after go config is set
+go-tools-install:
+	go install github.com/go-delve/delve/cmd/dlv@latest
 
 ###############
 # Minio Client
