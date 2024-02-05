@@ -1,3 +1,6 @@
+# use neovim for kubectl edit
+export KUBE_EDITOR=nvim
+
 # aliases
 alias k=kubectl
 alias kx=kubectx

@@ -15,11 +15,12 @@ GO_VERSION=1.20.13
 
 all: essentials nvim
 
-essentials: git
+essentials: bash-config git
 	sudo apt install build-essential
 	sudo apt install curl
 	sudo apt install gpg
 
+ops: kubernetes minio
 
 ###############
 # Bash
@@ -44,9 +45,9 @@ git-install:
 	@echo installing git
 	sudo apt install git
 
-git-config:
+git-config: .gitconfig
 	@echo configuring git --global
-	cp .gitconfig ${HOME}/.gitconfig
+	cp $^ ${HOME}/.gitconfig
 	@read -p "> git user.name: " user; git config --global user.name $$user 
 	@read -p "> git user.email: " email; git config --global user.email $$email 
 
@@ -71,7 +72,9 @@ nvim-config: .config/nvim
 # Kubernetes
 ###############
 
-kubernetes: bash-config kubectl-install helm-install
+kubernetes: kubectl-install kubectx-install kubernetes-config helm-install
+
+kubernetes-config: bash-config
 	grep -qxF 'source ${CONFIGDIR}/bash/kubernetes.sh' ${HOME}/.bashrc || echo 'source ${CONFIGDIR}/bash/kubernetes.sh' >> ${HOME}/.bashrc
 
 kubectl-install:
@@ -89,11 +92,10 @@ kubectx-install:
 	sudo chmod +x ${BINARYDIR}/kubens
 
 kustomize-install:
-	curl -L -o kustomize.tar.gz https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.3.0/kustomize_${KUSTOMIZE_VERSION}_linux_amd64.tar.gz
+	curl -L -o kustomize.tar.gz https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2F${KUSTOMIZE_VERSION}/kustomize_${KUSTOMIZE_VERSION}_linux_amd64.tar.gz
 	tar -xzf kustomize.tar.gz
 	sudo mv kustomize ${BINARYDIR}
 	rm kustomize.tar.gz
-
 
 helm-install:
 	curl -L -o helm.tar.gz https://get.helm.sh/helm-${HELMVERSION}-linux-amd64.tar.gz
@@ -121,9 +123,17 @@ go-config:
 go-tools-install:
 	go install github.com/go-delve/delve/cmd/dlv@latest
 
+
 ###############
 # Minio Client
 ###############
-mc: mc-install mc-config
+minio: mc-install mc-config
+
+mc-install:
+	curl -LO https://dl.min.io/client/mc/release/linux-amd64/mc
+	chmod +x mc
+	sudo mv mc ${BINARYDIR}/mc
 	
+mc-config:
+	grep -qxF 'source ${CONFIGDIR}/bash/minio.sh' ${HOME}/.bashrc || echo 'source ${CONFIGDIR}/bash/minio.sh' >> ${HOME}/.bashrc
 
