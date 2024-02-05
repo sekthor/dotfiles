@@ -10,6 +10,7 @@ SRCDIR=${HOME}/code/tools
 # version of tools
 KUBERNETESVERSION=v1.26.10
 HELMVERSION=v3.14.0
+KUSTOMIZE_VERSION=v5.3.0
 
 all: essentials nvim
 
@@ -85,6 +86,13 @@ kubectx-install:
 	sudo cp ${SRCDIR}/kubens ${BINARYDIR}/kubens
 	sudo chmod +x ${BINARYDIR}/kubectx
 	sudo chmod +x ${BINARYDIR}/kubens
+
+kustomize-install:
+	curl -L -o kustomize.tar.gz https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.3.0/kustomize_${KUSTOMIZE_VERSION}_linux_amd64.tar.gz
+	tar -xzf kustomize.tar.gz
+	sudo mv kustomize ${BINARYDIR}
+	rm kustomize.tar.gz
+
 
 helm-install:
 	curl -L -o helm.tar.gz https://get.helm.sh/helm-${HELMVERSION}-linux-amd64.tar.gz
