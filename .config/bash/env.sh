@@ -1,2 +1,2 @@
-EDITOR=nvim
-KUBE_EDITOR=nvim
+export EDITOR=nvim
+

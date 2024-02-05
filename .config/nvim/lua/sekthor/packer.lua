@@ -49,5 +49,7 @@ return require('packer').startup(function(use)
   use 'leoluz/nvim-dap-go'
   use 'mortepau/codicons.nvim'
 
+  use 'folke/zen-mode.nvim'
+
 end)
 
