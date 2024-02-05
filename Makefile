@@ -12,6 +12,7 @@ KUBERNETES_VERSION=v1.26.10
 HELM_VERSION=v3.14.0
 KUSTOMIZE_VERSION=v5.3.0
 GO_VERSION=1.20.13
+YQ_VERSION=v4.40.5
 
 all: essentials nvim
 
@@ -136,4 +137,13 @@ mc-install:
 	
 mc-config:
 	grep -qxF 'source ${CONFIGDIR}/bash/minio.sh' ${HOME}/.bashrc || echo 'source ${CONFIGDIR}/bash/minio.sh' >> ${HOME}/.bashrc
+
+###############
+# yq
+###############
+
+yq-install:
+	curl -L -o yq https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64
+	chmod +x yq
+	sudo mv yq ${BINARYDIR}
 
