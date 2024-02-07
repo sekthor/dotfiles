@@ -1,6 +1,6 @@
 alias sbrc="source $HOME/.bashrc"
 alias tf=terraform
-alias k=kubectl
-alias kx=kubectx
-alias kns=kubens
+
+# sets the wallpaper correctly for two screens, which does not happen automatically
+alias doublewall="feh --bg-scale $HOME/pic/wall/wallpaper feh --bg-scale $HOME/pic/wall/wallpaper"
 
