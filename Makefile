@@ -13,6 +13,7 @@ HELM_VERSION=v3.14.0
 KUSTOMIZE_VERSION=v5.3.0
 GO_VERSION=1.20.13
 YQ_VERSION=v4.40.5
+PROTOC_VERSION=3.15.8
 
 all: essentials nvim
 
@@ -129,6 +130,15 @@ go-config:
 # can only be installed after go config is set
 go-tools-install:
 	go install github.com/go-delve/delve/cmd/dlv@latest
+
+protoc-install:
+	curl -L -o protoc.zip https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOC_VERSION}/protoc-${PROTOC_VERSION}-linux-x86_64.zip
+	unzip protoc.zip -d protoc
+	sudo mv protoc ${BINARYDIR}
+
+protoc-config:
+	grep -qxF 'source ${CONFIGDIR}/bash/protoc.sh' ${HOME}/.bashrc || echo 'source ${CONFIGDIR}/bash/protoc.sh' >> ${HOME}/.bashrc
+
 
 ###############
 # Docker
