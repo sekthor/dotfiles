@@ -14,6 +14,8 @@ KUSTOMIZE_VERSION=v5.3.0
 GO_VERSION=1.20.13
 YQ_VERSION=v4.40.5
 PROTOC_VERSION=25.2
+BUF_VERSION=1.29.0
+
 
 all: essentials nvim
 
@@ -139,6 +141,10 @@ protoc-install:
 protoc-config:
 	grep -qxF 'source ${CONFIGDIR}/bash/protoc.sh' ${HOME}/.bashrc || echo 'source ${CONFIGDIR}/bash/protoc.sh' >> ${HOME}/.bashrc
 
+buf-install:
+	curl -L https://github.com/bufbuild/buf/releases/download/v${BUF_VERSION}/buf-Linux-x86_64 -o buf
+	chmod +x buf
+	sudo mv buf ${BINARYDIR}
 
 ###############
 # Docker
