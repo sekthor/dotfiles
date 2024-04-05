@@ -149,6 +149,7 @@ go: go-install go-config go-tools-install
 .PHONY: go-install
 go-install:
 	@echo "installing golang ${GO_VERSION}"
+	sudo rm -rf /usr/local/go
 	curl -L -o go.tar.gz https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
 	sudo tar -C /usr/local -xzf go.tar.gz
 	rm go.tar.gz
