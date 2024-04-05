@@ -11,7 +11,8 @@ SRCDIR=${HOME}/code/tools
 KUBERNETES_VERSION=v1.26.10
 HELM_VERSION=v3.14.0
 KUSTOMIZE_VERSION=v5.3.0
-GO_VERSION=1.20.13
+K9S_VERSION=v0.32.3
+GO_VERSION=1.22.1
 YQ_VERSION=v4.40.5
 PROTOC_VERSION=25.2
 BUF_VERSION=1.29.0
@@ -77,7 +78,7 @@ lazygit-install:
 .PHONY: nvim
 nvim: nvim-install nvim-config
 
-.PHONY: nvim-install:
+.PHONY: nvim-install
 nvim-install:
 	@echo installing \'neovim\' to ${BINARYDIR}
 	@echo installing \`packer\' to ...
@@ -130,6 +131,13 @@ helm-install:
 	sudo mv linux-amd64/helm ${BINARYDIR}/helm
 	rm -r linux-amd64 helm.tar.gz
 
+.PHONY: k9s-install
+k9s-install:
+	curl -L -o k9s.tar.gz https://github.com/derailed/k9s/releases/download/${K9S_VERSION}/k9s_Linux_amd64.tar.gz
+	tar -zxvf k9s.tar.gz
+	sudo mv k9s ${BINARYDIR}/k9s
+	rm -r LICENSE
+
 
 ###############
 # Golang
@@ -154,7 +162,7 @@ go-config:
 go-tools-install:
 	go install github.com/go-delve/delve/cmd/dlv@latest
 
-.PHONY proto
+.PHONY: proto
 proto: protoc-install protoc-config buf-install
 
 .PHONY: protoc-install
