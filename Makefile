@@ -16,6 +16,7 @@ GO_VERSION=1.22.1
 YQ_VERSION=v4.40.5
 PROTOC_VERSION=25.2
 BUF_VERSION=1.29.0
+HUGO_VERSION=v0.125.1
 
 
 .PHONY: all
@@ -246,3 +247,10 @@ act-install:
 	curl -L -o act.tar.gz https://github.com/nektos/act/releases/latest/download/act_Linux_x86_64.tar.gz
 	tar -xzf act.tar.gz
 	sudo mv act ${BINARYDIR}
+
+
+.PHONY: hugo-install
+hugo-install:
+	curl -L -o hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/${HUGO_VERSION}/hugo_0.125.1_linux-amd64.tar.gz
+	tar -xzf hugo.tar.gz
+	sudo mv hugo ${BINARYDIR}
