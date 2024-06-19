@@ -97,7 +97,7 @@ nvim-config: .config/nvim
 ###############
 
 .PHONY: kubernetes
-kubernetes: kubectl-install kubectx-install kubernetes-config helm-install
+kubernetes: kubectl-install kubectx-install kubernetes-config helm-install kubecolor-install
 
 .PHONY: kubernetes-config
 kubernetes-config: bash-config
