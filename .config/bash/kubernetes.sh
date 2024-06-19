@@ -2,7 +2,7 @@
 export KUBE_EDITOR=nvim
 
 # aliases
-alias k=kubectl
+alias k=kubecolor
 alias kx=kubectx
 alias kns=kubens
 
