@@ -17,7 +17,7 @@ GO_VERSION=1.22.1
 YQ_VERSION=v4.40.5
 PROTOC_VERSION=27.2
 BUF_VERSION=1.34.0
-HUGO_VERSION=v0.128.2
+HUGO_VERSION=0.128.2
 
 
 .PHONY: all
@@ -259,6 +259,6 @@ act-install:
 
 .PHONY: hugo-install
 hugo-install:
-	curl -L -o hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/${HUGO_VERSION}/hugo_0.125.1_linux-amd64.tar.gz
+	curl -L -o hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux-amd64.tar.gz
 	tar -xzf hugo.tar.gz
 	sudo mv hugo ${BINARYDIR}
